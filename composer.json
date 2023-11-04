@@ -1,0 +1,40 @@
+{
+  "name": "clarapress/clarapress-toc",
+  "description": "todo",
+  "keywords": ["wordpress", "plugin"],
+  "license": "GPL-3.0-only",
+  "authors": [
+    {
+      "name": "Wasseem Khayrattee",
+      "email": "wpdev.mailbox@wk.contact"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "config": {
+    "vendor-dir": "includes/vendor",
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  },
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "ClaraPress\\": "src/Core"
+    },
+    "files": ["src/clarapress-toc_plugin_helper.php"]
+  },
+  "require": {
+
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org/"
+    }
+  ]
+}
