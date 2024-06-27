@@ -10,7 +10,7 @@ class HomePage
     {
     }
 
-    public function registerMenu()
+    public function registerMenu(): void
     {
         add_menu_page(
             null,
@@ -31,7 +31,7 @@ class HomePage
         );
     }
 
-    public static function render_page_elements()
+    public static function render_page_elements(): void
     {
         global $title;
         $error_msg = '';
