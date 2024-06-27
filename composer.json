@@ -29,7 +29,7 @@
     "files": ["src/clarapress-toc_plugin_helper.php"]
   },
   "require": {
-
+    "caseyamcl/toc": "3.1"
   },
   "repositories": [
     {
