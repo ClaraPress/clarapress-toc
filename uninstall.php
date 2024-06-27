@@ -23,11 +23,8 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     die;
 }
 
-/**
- * load our main file now with composer autoloading
- */
-define('CLARAPRESS_TOC_PLUGIN_DIR', plugin_dir_path(__FILE__)); //has trailing slash at end
-require_once CLARAPRESS_TOC_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes/vendor/autoload.php';
+// Include the main plugin file
+require_once plugin_dir_path(__FILE__) . 'clarapress-toc.php';
 
 //Call our uninstall-cleanup process
 \ClaraPressToc\PluginManager::plugin_uninstall();
