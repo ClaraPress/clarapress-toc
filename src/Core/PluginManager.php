@@ -1,10 +1,9 @@
 <?php
 
-namespace ClaraPress;
+namespace ClaraPressToc;
 
-use ClaraPress\Admin\Dashboard;
-use ClaraPress\Enum;
-use ClaraPress\Admin\LogPage;
+use ClaraPressToc\Admin\Dashboard;
+use ClaraPressToc\Admin\LogPage;
 
 class PluginManager
 {
@@ -85,9 +84,9 @@ class PluginManager
     public static function initEnvironmentVars()
     {
         //example
-//        if (isset($_ENV[Enum::ENV_API_KEY])) {
-//            define('API_KEY', trim($_ENV[Enum::ENV_API_KEY]));
-//        }
+        //        if (isset($_ENV[Enum::ENV_API_KEY])) {
+        //            define('API_KEY', trim($_ENV[Enum::ENV_API_KEY]));
+        //        }
     }
 
     public static function doAdminUI()

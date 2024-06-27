@@ -1,8 +1,8 @@
 <?php
 
-namespace ClaraPress\Admin;
+namespace ClaraPressToc\Admin;
 
-use ClaraPress\Enum;
+use ClaraPressToc\Enum;
 
 class LogPage
 {

@@ -1,9 +1,8 @@
 <?php
 
-namespace ClaraPress\Admin;
+namespace ClaraPressToc\Admin;
 
-use ClaraPress\Enum;
-use ClaraPress\Utils;
+use ClaraPressToc\Enum;
 
 class HomePage
 {
@@ -15,7 +14,7 @@ class HomePage
     {
         add_menu_page(
             null,
-            'ClaraPress Table of Contents',
+            'ClaraPress ToC',
             Enum::ADMIN_PAGE_CAPABILITY,
             Enum::ADMIN_PAGE_PARENT_SLUG,
             null,
@@ -40,7 +39,6 @@ class HomePage
         if (!current_user_can('manage_options')) {
             return;
         }
-
 
         //todo: handle any POST
 

@@ -30,4 +30,4 @@ define('CLARAPRESS_TOC_PLUGIN_DIR', plugin_dir_path(__FILE__)); //has trailing s
 require_once CLARAPRESS_TOC_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes/vendor/autoload.php';
 
 //Call our uninstall-cleanup process
-\ClaraPress\PluginManager::plugin_uninstall();
+\ClaraPressToc\PluginManager::plugin_uninstall();

@@ -64,18 +64,18 @@ require_once CLARAPRESS_TOC_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes/vendor/
 /**
  * Register main Hooks
  */
-register_activation_hook(__FILE__, ['ClaraPress\\PluginManager', 'plugin_activation']);
-register_deactivation_hook(__FILE__, ['ClaraPress\\PluginManager', 'plugin_deactivation']);
+register_activation_hook(__FILE__, ['ClaraPressToc\\PluginManager', 'plugin_activation']);
+register_deactivation_hook(__FILE__, ['ClaraPressToc\\PluginManager', 'plugin_deactivation']);
 
 /**
  * Load the Admin-facing logic
  */
 if (is_admin()) {
-    add_action('init', ['ClaraPress\\PluginManager', 'admin_init']);
-    \ClaraPress\PluginManager::doAdminUI();
+    add_action('init', ['ClaraPressToc\\PluginManager', 'admin_init']);
+    \ClaraPressToc\PluginManager::doAdminUI();
 }
 
 /**
  * Load general frontend logic & background processes
  */
-\ClaraPress\PluginManager::run();
+\ClaraPressToc\PluginManager::run();

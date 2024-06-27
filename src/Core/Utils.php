@@ -1,6 +1,6 @@
 <?php
 
-namespace ClaraPress;
+namespace ClaraPressToc;
 
 class Utils
 {

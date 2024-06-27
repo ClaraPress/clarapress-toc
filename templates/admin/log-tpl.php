@@ -1,6 +1,6 @@
 <?php
 
-use ClaraPress\Enum;
+use ClaraPressToc\Enum;
 
 $injected_args = $args;
 $title = $error_msg = $txtlog_value = '';
