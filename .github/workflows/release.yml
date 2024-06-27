@@ -1,0 +1,53 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'  # Adjust based on our requirement
+
+      - name: Install dependencies
+        run: composer install --no-dev
+
+      - name: Prepare release
+        run: |
+          mkdir release
+          cp -R * release/
+          cd release
+          composer install --no-dev
+          zip -r ../clarapress-toc.zip . -x '*.git*' -x 'tests/*' -x 'composer.json' -x 'composer.lock' -x '.gitignore' -x '.php-cs-fixer.php' -x '.php_cs'
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Release of version ${{ github.ref }}.
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./clarapress-toc.zip
+          asset_name: clarapress-toc.zip
+          asset_content_type: application/zip
