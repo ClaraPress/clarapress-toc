@@ -39,7 +39,8 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            Release of version ${{ github.ref }}.
+            Release of version ${{ github.ref_name }}.
+            For a list of changes, see [CHANGELOG](https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md).
           draft: false
           prerelease: false
 
