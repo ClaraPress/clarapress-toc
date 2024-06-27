@@ -9,8 +9,6 @@
 *.swp
 Thumbs.db
 debug.log
-composer.lock
-includes/vendor/
 
 # wpengine specific
 .smushit-status
