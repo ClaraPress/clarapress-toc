@@ -2,6 +2,7 @@
 
 namespace ClaraPressToc;
 
+use Knp\Menu\ItemInterface;
 use TOC\MarkupFixer;
 use TOC\TocGenerator;
 
@@ -10,7 +11,9 @@ class TableOfContents
     const TOC_SHORTCODE = 'clarapresstoc';
 
     /**
-     * Build the table of contents and output it, using the WordPress load_template() method
+     * Build the table of contents and output it, using the WordPress load_template() method.
+     * This method processes the content to generate the TOC, including fixing header tags for anchors
+     * and optionally generating JSON-LD for the TOC.
      *
      * @param array $attributes Shortcode attributes.
      * @param string|null $content Content inside the shortcode (if any).
@@ -28,59 +31,61 @@ class TableOfContents
             return '';
         }
 
-        // Set default values for top_level and depth
+        // Set default values for top_level, depth, and schema
         $top_level = isset($attributes['top_level']) ? (int) $attributes['top_level'] : 1;
         $depth = isset($attributes['depth']) ? (int) $attributes['depth'] : 6;
         $schema_enabled = isset($attributes['schema']) ? filter_var($attributes['schema'], FILTER_VALIDATE_BOOLEAN) : true;
 
-        // This ensures that all header tags have `id` attributes so they can be used as anchor links
-        $fixer = new MarkupFixer();
-        $content = $fixer->fix($content);
+        // Ensure that all header tags have `id` attributes so they can be used as anchor links
+        $content = self::fix_content_by_adding_anchors($content);
 
-        /** @var TocGenerator $toc_content */
         $generator = new TocGenerator();
         $toc_html = $generator->getHtmlMenu($content, $top_level, $depth);
+        $toc_menu = $generator->getMenu($content, $top_level, $depth);
 
-        $json_ld = '';
+        $tpl_args = ['toc' => $toc_html];
         if ($schema_enabled) {
-            $json_ld = self::generate_json_ld($content, $top_level, $depth);
+            $tpl_args['json_ld'] = self::generate_json_ld($toc_menu);
         }
 
         ob_start();
-        $tpl_args = ['toc' => $toc_html];
         load_template(CLARAPRESS_TOC_PLUGIN_DIR . 'templates/toc.tpl.php', false, $tpl_args);
 
-        return ob_get_clean() . $json_ld;
+        return ob_get_clean();
     }
 
-    public static function fix_content_by_adding_anchors(): string
+    /**
+     * Fix the content by adding `id` attributes to header tags for use as anchor links.
+     * This method ensures all header tags have unique IDs that can be linked to from the TOC.
+     *
+     * @param string $content The post content to be processed.
+     *
+     * @return string The processed content with `id` attributes added to headers.
+     */
+    public static function fix_content_by_adding_anchors(string $content): string
     {
-        $post_content = get_the_content();
-
-        if (has_shortcode($post_content, self::TOC_SHORTCODE)) {
-            // This ensures that all header tags have `id` attributes so they can be used as anchor links
+        if (has_shortcode($content, self::TOC_SHORTCODE)) {
+            // Ensure that all header tags have `id` attributes so they can be used as anchor links
             $fixer = new MarkupFixer();
-            $post_content = $fixer->fix($post_content);
+            $content = $fixer->fix($content);
 
             unset($fixer);
         }
 
-        return $post_content;
+        return $content;
     }
 
-    private static function generate_json_ld(string $content, int $top_level, int $depth): string
+    /**
+     * Generate JSON-LD structured data for the TOC.
+     * This method creates the JSON-LD representation of the TOC for SEO purposes.
+     *
+     * @param ItemInterface $menu The TOC menu object.
+     *
+     * @return string The JSON-LD script tag.
+     */
+    private static function generate_json_ld(ItemInterface $menu): string
     {
-        $generator = new TocGenerator();
-        $menu = $generator->getMenu($content, $top_level, $depth);
-
-        $items = [];
-        foreach ($menu->getChildren() as $child) {
-            $items[] = [
-                '@type' => 'SiteNavigationElement',
-                'name' => $child->getLabel(),
-                'url' => get_permalink() . '#' . $child->getName(),
-            ];
-        }
+        $items = self::generate_json_ld_items($menu);
 
         $data = [
             '@context' => 'https://schema.org',
@@ -91,5 +96,31 @@ class TableOfContents
         ];
 
         return '<script type="application/ld+json">' . json_encode($data, JSON_UNESCAPED_SLASHES) . '</script>';
+    }
+
+    /**
+     * Recursively generate JSON-LD items for each TOC entry.
+     * This method handles the nested structure of the TOC, generating items for each level.
+     *
+     * @param ItemInterface $menu The TOC menu object.
+     *
+     * @return array An array of JSON-LD items.
+     */
+    private static function generate_json_ld_items(ItemInterface $menu): array
+    {
+        $items = [];
+        foreach ($menu->getChildren() as $child) {
+            $item = [
+                '@type' => 'SiteNavigationElement',
+                'name' => $child->getLabel(),
+                'url' => get_permalink() . '#' . $child->getName(),
+            ];
+            if ($child->hasChildren()) {
+                $item['hasPart'] = self::generate_json_ld_items($child);
+            }
+            $items[] = $item;
+        }
+
+        return $items;
     }
 }
