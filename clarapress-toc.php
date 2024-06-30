@@ -10,7 +10,7 @@
  * Plugin Name: ClaraPress Table of Contents
  * Plugin URI: https://github.com/ClaraPress/clarapress-toc
  * Description: A plugin to automatically generate a TOC for posts, pages and custom post types by parsing headers. It adds ID anchor attributes for proper in-page links.
- * Version: 0.6.0
+ * Version: 0.6.1
  * Requires at least: 6.4.0
  * Author: Wasseem Khayrattee
  * Author URI: https://github.com/wkhayrattee
@@ -48,7 +48,7 @@ if (!function_exists('add_action')) {
 /**
  * Some global constants for our use-case
  */
-define('CLARAPRESS_TOC_PLUGIN_VERSION', '0.6.0');
+define('CLARAPRESS_TOC_PLUGIN_VERSION', '0.6.1');
 define('CLARAPRESS_TOC_PLUGIN_MINIMUM_WP_VERSION', '6.4.0');
 define('CLARAPRESS_TOC_PLUGIN_DIR_URL', plugin_dir_url(__FILE__)); //has trailing slash at end
 define('CLARAPRESS_TOC_PLUGIN_DIR', plugin_dir_path(__FILE__)); //has trailing slash at end
