@@ -15,8 +15,8 @@ $summary_text = apply_filters('clarapress_toc_summary_text', __('Open Table of c
     <details>
         <summary><?php echo esc_html($summary_text); ?></summary>
         <div class='clarapress-toc-items'>
-            <?php echo $toc_content; ?>
+            <?php echo wp_kses_post($toc_content); ?>
         </div>
     </details>
 </div>
-<?php echo $json_ld; ?>
+<?php echo wp_kses_post($json_ld); ?>
