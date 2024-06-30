@@ -1,6 +1,6 @@
 # Changelog Details
 
-### 1.0.0 (Jun 30, 2024) ###
+### 0.6.0 (Jun 30, 2024) ###
 * Added customizable heading levels for TOC using top_level and depth shortcode attributes.
 * Implemented a filter clarapress_toc_summary_text to allow overriding the summary text in the TOC.
 * Added localization support for summary text using the __() function and text domain clarapress-toc.
@@ -9,5 +9,8 @@
 * Updated documentation to include usage examples and customization options.
 * Added SiteNavigationElement schema to enhance SEO with an option to enable/disable it via shortcode attribute schema.
 
-### 0.1.0 (Jun 27, 2024) ###
+### 0.5.0 (Jun 27, 2024) ###
+* Workout a Github Action to automate the release process whenever a new tag is pushed to the repository.
+
+### 0.1.0 (Nov 4, 2023) ###
 * Initial commit of working code for the benefit of everyone who needs this plugin
