@@ -28,7 +28,7 @@ jobs:
           cp -R !(release) release/
           cd release
           composer install --no-dev
-          zip -r ../clarapress-toc.zip . -x '*.git*' -x 'tests/*' -x 'composer.json' -x 'composer.lock' -x '.gitignore' -x '.php-cs-fixer.php' -x '.php_cs'
+          zip -r ../clarapress-toc.zip . -x '*.git*' -x 'tests/*' -x 'composer.json' -x 'composer.lock' -x '.gitignore' -x '.php-cs-fixer.php' -x '.php_cs' -x '.keep'
 
       - name: Create GitHub Release
         id: create_release
