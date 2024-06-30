@@ -95,7 +95,7 @@ class TableOfContents
             'hasPart' => $items,
         ];
 
-        return '<script type="application/ld+json">' . json_encode($data, JSON_UNESCAPED_SLASHES) . '</script>';
+        return '<script type="application/ld+json">' . wp_json_encode($data, JSON_UNESCAPED_SLASHES) . '</script>';
     }
 
     /**
