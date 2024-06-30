@@ -50,13 +50,13 @@ class PluginManager
      */
     public static function run(): void
     {
-        // Register the shortcode
         add_action('init', function () {
+            // Register the shortcode
             add_shortcode(\ClaraPressToc\TableOfContents::TOC_SHORTCODE, [\ClaraPressToc\TableOfContents::class, 'load_toc']);
-        }, 5);
 
-        // Now Add id anchor attributes to the <Hx> html tags
-        add_filter('the_content', [\ClaraPressToc\TableOfContents::class, 'fix_content_by_adding_anchors'], 5);
+            // Now Add id anchor attributes to the <Hx> html tags
+            add_filter('the_content', [\ClaraPressToc\TableOfContents::class, 'fix_content_by_adding_anchors'], 5);
+        }, 5);
     }
 
     /**
