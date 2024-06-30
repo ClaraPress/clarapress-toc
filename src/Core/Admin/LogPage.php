@@ -59,9 +59,15 @@ class LogPage
      */
     public static function fetchLogData(string $log_file_path): string
     {
+        global $wp_filesystem;
         $log_file = $log_file_path;
         $max_lines = 100;
         $log_data = '';
+
+        if (empty($wp_filesystem)) {
+            require_once(ABSPATH . 'wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
 
         if (!file_exists($log_file)) {
             add_settings_error(Enum::ADMIN_PAGE_LOG_SLUG, Enum::ADMIN_PAGE_LOG_SLUG . '_message', 'The log seems empty!', 'warn');
@@ -69,7 +75,7 @@ class LogPage
             return '';
         }
 
-        if (!is_writable($log_file)) {
+        if (!$wp_filesystem->is_writable($log_file)) {
             add_settings_error(Enum::ADMIN_PAGE_LOG_SLUG, Enum::ADMIN_PAGE_LOG_SLUG . '_message', 'the log is not writable. Please chmod it to 0777', 'error');
 
             return '';
