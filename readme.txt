@@ -8,7 +8,7 @@ Requires PHP: 8.0
 License: GPL-3.0-only
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-A WordPress plugin to automatically generate a table of contents for your posts, pages and custom post types by parsing its contents for headers. It will also automatically add appropriate id anchor attributes to your header tags so that in-page links work as expected.
+A plugin to automatically generate a TOC for posts, pages and custom post types by parsing headers. It adds ID anchor attributes for proper in-page links.
 
 == Description ==
 
