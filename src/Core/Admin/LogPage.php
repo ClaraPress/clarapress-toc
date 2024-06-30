@@ -139,7 +139,7 @@ class LogPage
         }
 
         if (file_exists($log_file_path)) {
-            unlink($log_file_path);
+            wp_delete_file($log_file_path);
 
             add_settings_error(Enum::ADMIN_PAGE_LOG_SLUG, Enum::ADMIN_PAGE_LOG_SLUG . '_message', 'the log was cleared', 'success');
 
