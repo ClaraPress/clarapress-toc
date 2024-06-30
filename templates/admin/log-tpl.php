@@ -24,7 +24,7 @@ $txtlog_value = get_query_var('txtlog_value');
             </tr>
             <tr>
                 <td width="100%">
-                    <textarea name="txtlog" class="large-text code" style="height:450px;white-space: pre-wrap;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><?php echo htmlentities($txtlog_value); ?>
+                    <textarea name="txtlog" class="large-text code" style="height:450px;white-space: pre-wrap;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><?php echo esc_textarea($txtlog_value); ?>
                     </textarea>
                 </td>
             </tr>
