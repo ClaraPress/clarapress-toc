@@ -1,8 +1,11 @@
 <?php
 $injected_args = $args;
-$toc_content = '';
+$toc_content = $json_ld = '';
 if (isset($injected_args['toc'])) {
     $toc_content = $injected_args['toc'];
+}
+if (isset($injected_args['json_ld'])) {
+    $json_ld = $injected_args['json_ld'];
 }
 
 // Apply the filter to allow overriding the summary text
@@ -16,3 +19,4 @@ $summary_text = apply_filters('clarapress_toc_summary_text', __('Open Table of c
         </div>
     </details>
 </div>
+<?php echo $json_ld; ?>
