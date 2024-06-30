@@ -3,15 +3,15 @@
  * ClaraPress Table of Contents
  *
  * @author Wasseem Khayrattee
- * @copyright 2022 Wasseem Khayrattee
+ * @copyright 2024 Wasseem Khayrattee
  * @license GPL-3.0-only
  *
  * @wordpress-plugin
  * Plugin Name: ClaraPress Table of Contents
- * Plugin URI: TODO
- * Description: TODO
- * Version: 0.1.0
- * Requires at least: 6.2.0
+ * Plugin URI: https://github.com/ClaraPress/clarapress-toc
+ * Description: A WordPress plugin to automatically generate a table of contents for your posts pages and custom post types by parsing its contents for headers. It will also automatically add appropriate id anchor attributes to your header tags so that in-page links work as expected.
+ * Version: 0.6.0
+ * Requires at least: 6.4.0
  * Author: Wasseem Khayrattee
  * Author URI: https://github.com/wkhayrattee
  * License: GPL-3.0-only
@@ -48,8 +48,8 @@ if (!function_exists('add_action')) {
 /**
  * Some global constants for our use-case
  */
-define('CLARAPRESS_TOC_PLUGIN_VERSION', '0.1.0');
-define('CLARAPRESS_TOC_PLUGIN_MINIMUM_WP_VERSION', '6.2.0');
+define('CLARAPRESS_TOC_PLUGIN_VERSION', '0.6.0');
+define('CLARAPRESS_TOC_PLUGIN_MINIMUM_WP_VERSION', '6.4.0');
 define('CLARAPRESS_TOC_PLUGIN_DIR_URL', plugin_dir_url(__FILE__)); //has trailing slash at end
 define('CLARAPRESS_TOC_PLUGIN_DIR', plugin_dir_path(__FILE__)); //has trailing slash at end
 define('CLARAPRESS_TOC_PLUGIN_BASENAME', plugin_basename(CLARAPRESS_TOC_PLUGIN_DIR));
