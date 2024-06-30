@@ -19,4 +19,6 @@ $summary_text = apply_filters('clarapress_toc_summary_text', __('Open Table of c
         </div>
     </details>
 </div>
-<?php echo wp_kses_post($json_ld); ?>
+<?php if (!empty($json_ld)) : ?>
+    <script type="application/ld+json"><?php echo $json_ld;//The JSON-LD content is safely encoded when created, so it does not need further escaping here ?></script>
+<?php endif; ?>
