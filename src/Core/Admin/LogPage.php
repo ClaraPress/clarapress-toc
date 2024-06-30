@@ -120,13 +120,19 @@ class LogPage
      */
     public static function clearErrorLog(string $log_file_path): bool
     {
+        global $wp_filesystem;
+        if (empty($wp_filesystem)) {
+            require_once(ABSPATH . 'wp-admin/includes/file.php');
+            WP_Filesystem();
+        }
+
         if (!file_exists($log_file_path)) {
             add_settings_error(Enum::ADMIN_PAGE_LOG_SLUG, Enum::ADMIN_PAGE_LOG_SLUG . '_message', 'The log seems empty!', 'warn');
 
             return false;
         }
 
-        if (!is_writable($log_file_path)) {
+        if (!$wp_filesystem->is_writable($log_file_path)) {
             add_settings_error(Enum::ADMIN_PAGE_LOG_SLUG, Enum::ADMIN_PAGE_LOG_SLUG . '_message', 'the log is not writable. Please chmod it to 0777', 'error');
 
             return false;
