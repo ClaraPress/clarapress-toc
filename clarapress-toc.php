@@ -9,7 +9,7 @@
  * @wordpress-plugin
  * Plugin Name: ClaraPress Table of Contents
  * Plugin URI: https://github.com/ClaraPress/clarapress-toc
- * Description: A WordPress plugin to automatically generate a table of contents for your posts pages and custom post types by parsing its contents for headers. It will also automatically add appropriate id anchor attributes to your header tags so that in-page links work as expected.
+ * Description: A WordPress plugin to automatically generate a table of contents for your posts, pages and custom post types by parsing its contents for headers. It will also automatically add appropriate id anchor attributes to your header tags so that in-page links work as expected.
  * Version: 0.6.0
  * Requires at least: 6.4.0
  * Author: Wasseem Khayrattee

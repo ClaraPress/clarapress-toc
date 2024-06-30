@@ -8,13 +8,13 @@
 **License:** GPL-3.0-only  
 **License URI:** https://www.gnu.org/licenses/gpl-3.0.html  
 
-A WordPress plugin to automatically generate a table of contents for your posts pages and custom post types by parsing its contents for headers. It will also automatically add appropriate id anchor attributes to your header tags so that in-page links work as expected.
+A WordPress plugin to automatically generate a table of contents for your posts, pages and custom post types by parsing its contents for headers. It will also automatically add appropriate id anchor attributes to your header tags so that in-page links work as expected.
 
 ## Description ##
 
 ### About ###
 
-ClaraPress Table of Contents is a simple and efficient WordPress plugin that automatically generates a table of contents (TOC) for your posts and pages. By using a shortcode, you can easily insert a TOC that helps your readers navigate through your content by providing direct links to different sections. You can also customize the heading levels included in the TOC.
+ClaraPress Table of Contents is a simple and efficient WordPress plugin that automatically generates a table of contents (TOC) for your posts, pages and custom post types. By using a shortcode, you can easily insert a TOC that helps your readers navigate through your content by providing direct links to different sections. You can also customize the heading levels included in the TOC.
 
 It's focused on providing a sound TOC interface with no "bells and whistles". While it does come with some helpful features for customizing the included heading levels via shortcode attributes, the esthetic design and styling of the TOC is left to the user to implement using their own CSS.
 
