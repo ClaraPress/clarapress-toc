@@ -34,7 +34,12 @@ class LogPage
 
         //Clear error log
         if (isset($_POST['clearlog_btn'])) {
-            $error_msg = self::clearErrorLog($error_log_file);
+            if (isset($_POST['clear_log_nonce']) && wp_verify_nonce($_POST['clear_log_nonce'], 'clear_log_action')) {
+                $error_msg = self::clearErrorLog($error_log_file);
+            } else {
+                // Nonce verification failed
+                wp_die(__('Nonce verification failed', 'clarapress-toc'));
+            }
         } else {
             $txtlog_value = self::fetchLogData($error_log_file);
         }
@@ -65,7 +70,7 @@ class LogPage
         $log_data = '';
 
         if (empty($wp_filesystem)) {
-            require_once(ABSPATH . 'wp-admin/includes/file.php');
+            require_once ABSPATH . 'wp-admin/includes/file.php';
             WP_Filesystem();
         }
 
@@ -122,7 +127,7 @@ class LogPage
     {
         global $wp_filesystem;
         if (empty($wp_filesystem)) {
-            require_once(ABSPATH . 'wp-admin/includes/file.php');
+            require_once ABSPATH . 'wp-admin/includes/file.php';
             WP_Filesystem();
         }
 

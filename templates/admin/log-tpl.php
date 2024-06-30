@@ -17,6 +17,7 @@ $txtlog_value = get_query_var('txtlog_value');
     <h1><?php echo $title; ?></h1>
     <h3>Use the Log below to spot any error during using this plugin</h3>
     <form name="log_page_form" action="" method="post">
+        <?php wp_nonce_field('clear_log_action', 'clear_log_nonce'); ?>
         <?php settings_errors(Enum::ADMIN_PAGE_LOG_SLUG); ?>
         <table class="form-table">
             <tr>
